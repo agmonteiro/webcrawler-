@@ -1,59 +1,314 @@
 Python 2.7.13 (v2.7.13:a06454b1afa1, Dec 17 2016, 20:42:59) [MSC v.1500 32 bit (Intel)] on win32
 Type "copyright", "credits" or "license()" for more information.
 >>> import urllib2
->>> response = urllib2.urlopen
->>> response = urllib2.urlopen('https://www.worldpackers.com/')
+>>> response = urllib2.urlopen('http://g1.globo.com/')
 >>> page = response.read()
 >>> def pega_link(text):
 	pre_link = text.find('a href=')
 	if pre_link == -1:
 		return None,0
 	inicio_link = text.find('"',pre_link)
-	fim_link = text.find('"',inicio_link + 1)
-	url = text [inicio_link + 1 : fim_link]
-	return url, fim_link
+	final_link = text.find('"',inicio_link + 1)
+	url = text[inicio_link + 1: final_link]
+	return url,final_link
 
->>> url,poslink = pega_link(text)
-
-Traceback (most recent call last):
-  File "<pyshell#13>", line 1, in <module>
-    url,poslink = pega_link(text)
-NameError: name 'text' is not defined
->>> pega_link (page)
-('/users/sign_in', 9938)
->>> url,poslink = pega_link(page)
->>> url,poslink
-('/users/sign_in', 9938)
 >>> def pega_todos_links(text):
 	while True:
-		url,poslink = pega_link(text)
+		url,final_link = pega_link(text)
 		if url:
 			print url
-			text = text[poslink:]
+			text = text[final_link:]
 		else:
 			break
 
 		
->>> print pega_todos_links(page)
-/users/sign_in
-/users/sign_up?ref=unlogged_menu
-/images/experiences/hostel.jpg
-/images/experiences/social_impact.jpg
-/images/experiences/nature_lovers.jpg
-/images/experiences/social_media.jpg
-/images/experiences/photography.jpg
-/images/experiences/chef_to_the_world.jpg
-/images/experiences/hands_on.jpg
-/images/experiences/short_trip.jpg
-/images/experiences/long_journey.jpg
-/about-us
-/stories
-/guide/terms
-/guide/traveling
-/guide/traveling/tour
-/guide/traveling/exchange-your-skills
-/guide/traveling/how-to-travel
-/hosts
-mailto:info@worldpackers.com
-None
+>>> pega_todos_links(page)
+/distrito-federal/
+/goias/
+/mato-grosso/
+/mato-grosso-do-sul/
+/al/alagoas/
+/bahia/
+/ceara/
+/ma/maranhao/
+/paraiba/
+/pernambuco/
+/pernambuco/
+/pe/caruaru-regiao/
+/pe/petrolina-regiao/
+/pi/piaui/
+/rn/rio-grande-do-norte/
+/se/sergipe/
+/ac/acre/
+http://g1.globo.com/ac/cruzeiro-do-sul-regiao/
+/ap/amapa/
+/amazonas/
+/pa/para/
+/pa/para/
+/pa/santarem-regiao/
+/ro/rondonia/
+http://g1.globo.com/ro/rondonia/
+http://g1.globo.com/ro/ariquemes-e-vale-do-jamari/
+http://g1.globo.com/ro/ji-parana-regiao-central/
+/ro/cacoal-e-zona-da-mata/
+http://g1.globo.com/ro/vilhena-e-cone-sul/
+/rr/roraima/
+/to/tocantins/
+/espirito-santo/
+/minas-gerais/
+/minas-gerais/
+/mg/centro-oeste/
+/mg/grande-minas/
+/mg/sul-de-minas/
+/minas-gerais/triangulo-mineiro/
+/mg/vales-mg/
+/mg/zona-da-mata/
+/rio-de-janeiro/
+/rio-de-janeiro/
+/rj/norte-fluminense/
+/rj/regiao-dos-lagos/
+/rj/regiao-serrana/
+/rj/sul-do-rio-costa-verde/
+/sao-paulo/
+/sao-paulo/
+/sp/bauru-marilia/
+/sp/campinas-regiao/
+/sao-paulo/itapetininga-regiao/
+/sp/mogi-das-cruzes-suzano/
+/sp/piracicaba-regiao/
+/sp/presidente-prudente-regiao/
+/sp/ribeirao-preto-franca/
+/sao-paulo/sao-jose-do-rio-preto-aracatuba/
+/sp/santos-regiao/
+/sp/sao-carlos-regiao/
+/sao-paulo/sorocaba-jundiai/
+/sp/vale-do-paraiba-regiao/
+/pr/parana/
+/pr/parana/
+/pr/campos-gerais-sul/
+/pr/norte-noroeste/
+/pr/oeste-sudoeste/
+/rs/rio-grande-do-sul/
+/sc/santa-catarina/
+http://g1.globo.com/economia/agronegocios/
+http://g1.globo.com/carros/
+http://g1.globo.com/ciencia-e-saude/
+http://g1.globo.com/economia/concursos-e-emprego/
+http://g1.globo.com/economia/
+http://g1.globo.com/educacao/
+http://globoesporte.globo.com
+http://g1.globo.com/especial-publicitario/zap/imoveis/
+http://g1.globo.com/mundo/
+http://g1.globo.com/musica/
+http://g1.globo.com/natureza/
+http://g1.globo.com/planeta-bizarro/
+http://g1.globo.com/politica/
+http://g1.globo.com/pop-arte/
+http://g1.globo.com/tecnologia/
+http://g1.globo.com/distrito-federal/
+http://g1.globo.com/goias/
+http://g1.globo.com/mato-grosso/
+http://g1.globo.com/mato-grosso-do-sul/
+http://g1.globo.com/al/alagoas/
+http://g1.globo.com/bahia/
+http://g1.globo.com/ceara/
+http://g1.globo.com/ma/maranhao/
+http://g1.globo.com/paraiba/
+http://g1.globo.com/pernambuco/
+http://g1.globo.com/pernambuco/
+http://g1.globo.com/pe/caruaru-regiao/
+http://g1.globo.com/pe/petrolina-regiao/
+http://g1.globo.com/pi/piaui/
+http://g1.globo.com/rn/rio-grande-do-norte/
+http://g1.globo.com/se/sergipe/
+http://g1.globo.com/ac/acre/
+http://g1.globo.com/ac/cruzeiro-do-sul-regiao/
+http://g1.globo.com/ap/amapa/
+http://g1.globo.com/amazonas/
+http://g1.globo.com/pa/para/
+http://g1.globo.com/pa/para/
+http://g1.globo.com/pa/santarem-regiao/
+http://g1.globo.com/ro/rondonia/
+http://g1.globo.com/ro/ariquemes-e-vale-do-jamari/
+http://g1.globo.com/ro/cacoal-e-zona-da-mata/
+http://g1.globo.com/ro/ji-parana-regiao-central/
+http://g1.globo.com/ro/rondonia/
+http://g1.globo.com/ro/vilhena-e-cone-sul/
+http://g1.globo.com/rr/roraima/
+http://g1.globo.com/to/tocantins/
+http://g1.globo.com/espirito-santo/
+http://g1.globo.com/minas-gerais/
+http://g1.globo.com/minas-gerais/
+http://g1.globo.com/mg/centro-oeste/
+http://g1.globo.com/mg/grande-minas/
+http://g1.globo.com/mg/sul-de-minas/
+http://g1.globo.com/minas-gerais/triangulo-mineiro/
+http://g1.globo.com/mg/vales-mg/
+http://g1.globo.com/mg/zona-da-mata/
+http://g1.globo.com/rio-de-janeiro
+http://g1.globo.com/rio-de-janeiro
+http://g1.globo.com/rj/norte-fluminense/
+http://g1.globo.com/rj/regiao-dos-lagos/
+http://g1.globo.com/rj/regiao-serrana/
+http://g1.globo.com/rj/sul-do-rio-costa-verde/
+http://g1.globo.com/sao-paulo
+http://g1.globo.com/sao-paulo
+http://g1.globo.com/sp/bauru-marilia/
+http://g1.globo.com/sp/campinas-regiao/
+http://g1.globo.com/sao-paulo/itapetininga-regiao/
+http://g1.globo.com/sp/mogi-das-cruzes-suzano/
+http://g1.globo.com/sp/piracicaba-regiao/
+http://g1.globo.com/sp/presidente-prudente-regiao/
+http://g1.globo.com/sp/ribeirao-preto-franca/
+http://g1.globo.com/sao-paulo/sao-jose-do-rio-preto-aracatuba/
+http://g1.globo.com/sp/santos-regiao/
+http://g1.globo.com/sp/sao-carlos-regiao/
+http://g1.globo.com/sao-paulo/sorocaba-jundiai/
+http://g1.globo.com/sp/vale-do-paraiba-regiao/
+http://g1.globo.com/pr/parana/
+http://g1.globo.com/pr/parana/
+http://g1.globo.com/pr/campos-gerais-sul/
+http://g1.globo.com/pr/norte-noroeste/
+http://g1.globo.com/pr/oeste-sudoeste/
+http://g1.globo.com/rs/rio-grande-do-sul/
+http://g1.globo.com/sc/santa-catarina/
+http://g1.globo.com/carros/
+http://g1.globo.com/bemestar/
+http://g1.globo.com/bom-dia-brasil/
+http://g1.globo.com/como-sera/
+http://g1.globo.com/fantastico/
+http://g1.globo.com/globo-reporter/
+http://g1.globo.com/economia/agronegocios/globo-rural/
+http://g1.globo.com/globo-news/
+http://g1.globo.com/hora1/
+http://g1.globo.com/jornal-da-globo/
+http://g1.globo.com/jornal-hoje
+http://g1.globo.com/jornal-nacional/
+http://g1.globo.com/economia/pme/pequenas-empresas-grandes-negocios/
+http://g1.globo.com/profissao-reporter/
+http://g1.globo.com/retrospectiva/2016/
+http://g1.globo.com/tecnologia/blog/seguranca-digital/
+http://g1.globo.com/natureza/blog/nova-etica-social/
+http://g1.globo.com/bemestar/blog/doutora-ana-responde/
+http://g1.globo.com/natureza/blog/mundo-sustentavel/
+http://g1.globo.com/educacao/blog/andrea-ramal/
+http://g1.globo.com/musica/blog/antonio-carlos-miguel/
+http://g1.globo.com/pop-arte/blog/quem-curte-o-blog-de-fa-clube/
+http://g1.globo.com/ciencia-e-saude/blog/observatorio/
+http://g1.globo.com/pop-arte/blog/legendado/
+http://g1.globo.com/politica/blog/cristiana-lobo/
+http://g1.globo.com/carros/blog/oficina-do-g1/
+http://g1.globo.com/pop-arte/blog/dodo-azevedo/
+http://g1.globo.com/pop-arte/blog/geneton-moraes-neto/
+http://g1.globo.com/politica/blog/blog-do-camarotti/
+http://g1.globo.com/mundo/blog/helio-gurovitz/
+http://g1.globo.com/concursos-e-emprego/blog/tira-duvidas-de-concursos/
+http://g1.globo.com/pop-arte/blog/maquina-de-escrever/
+http://g1.globo.com/bemestar/blog/longevidade-modo-de-usar/
+http://g1.globo.com/politica/blog/matheus-leitao/
+ http://g1.globo.com/musica/blog/mauro-ferreira/
+http://g1.globo.com/tecnologia/blog/tira-duvidas-de-tecnologia/
+ http://g1.globo.com/economia/blog/samy-dana/
+http://g1.globo.com/tecnologia/blog/startup/
+http://g1.globo.com/economia/blog/thais-heredia/
+http://g1.globo.com/pop-arte/blog/yvonne-maggie/
+http://g1.globo.com/pop-arte/blog/zeca-camargo/
+http://g1.globo.com/musica/agenda.html
+http://www.techtudo.com.br/softwares/
+http://falecomog1.com.br/
+http://especiais.g1.globo.com/app-g1/
+http://especiais.g1.globo.com/educacao/app-g1-enem/
+http://g1.globo.com/economia/mercados/cotacoes/#indicadores-economicos
+http://g1.globo.com/economia/mercados/cotacoes/#indices-de-mercados
+http://g1.globo.com/loterias/
+http://g1.globo.com/previsao-do-tempo.html
+http://g1.globo.com/carros/tabela-fipe/
+http://especiais.g1.globo.com/minas-gerais/transito/radar-transito-agora.html
+http://especiais.g1.globo.com/distrito-federal/transito/radar-transito-agora.html
+http://especiais.g1.globo.com/pernambuco/transito/radar-transito-agora.html
+http://g1.globo.com/rio-de-janeiro/transito/radar-tempo-transito-agora.html
+http://g1.globo.com/sao-paulo/transito/radar-tempo-transito-agora.html
+http://g1.globo.com/videos/
+http://especiais.g1.globo.com/app-g1/
+https://falecomog1.globo.com/
+http://g1.globo.com/principios-editoriais-do-grupo-globo.html
+http://www.grupoglobo.globo.com/
+http://g1.globo.com/especial-publicitario/somos-todos-cervejeiros/
+http://g1.globo.com/educacao/enem/2016/
+http://g1.globo.com/carnaval/2017/ 
+http://g1.globo.com/politica/operacao-lava-jato/
+http://g1.globo.com/rs/rio-grande-do-sul/noticia/2017/01/temer-cita-necessidade-imperiosa-de-fazer-presidios-e-anuncia-um-no-rs.html
+http://g1.globo.com/rs/rio-grande-do-sul/noticia/2017/01/temer-cita-necessidade-imperiosa-de-fazer-presidios-e-anuncia-um-no-rs.html
+http://g1.globo.com/politica/noticia/carmen-lucia-conversou-com-temer-sobre-censo-do-sistema-penitenciario.ghtml
+http://g1.globo.com/politica/noticia/carmen-lucia-conversou-com-temer-sobre-censo-do-sistema-penitenciario.ghtml
+http://g1.globo.com/am/amazonas/noticia/2017/01/mortes-em-cadeia-mudam-rotina-na-rua-evitamos-sair-diz-morador.html
+http://g1.globo.com/am/amazonas/noticia/2017/01/mortes-em-cadeia-mudam-rotina-na-rua-evitamos-sair-diz-morador.html
+http://g1.globo.com/mundo/noticia/trump-substitui-locutor-que-trabalha-em-posses-presidenciais-desde-1957.ghtml
+http://g1.globo.com/mundo/noticia/trump-substitui-locutor-que-trabalha-em-posses-presidenciais-desde-1957.ghtml
+http://g1.globo.com/minas-gerais/noticia/secretaria-de-saude-investiga-14-mortes-por-febre-amarela-em-minas.ghtml 
+http://g1.globo.com/pop-arte/noticia/sociologo-zygmunt-bauman-morre-aos-91-anos.ghtml 
+http://g1.globo.com/pop-arte/noticia/sociologo-zygmunt-bauman-morre-aos-91-anos.ghtml 
+http://g1.globo.com/politica/noticia/sem-coesao-no-proprio-partido-rosso-oficializa-candidatura-a-presidencia-da-camara.ghtml
+http://g1.globo.com/politica/noticia/sem-coesao-no-proprio-partido-rosso-oficializa-candidatura-a-presidencia-da-camara.ghtml
+http://g1.globo.com/politica/noticia/governo-federal-expulsou-550-servidores-em-2016-por-irregularidades-diz-cgu.ghtml
+/index/feed/pagina-4.html
+/previsao-do-tempo/sp/sao-paulo.html
+http://g1.globo.com/sao-paulo/transito/radar-tempo-transito-agora.html
+http://g1.globo.com/videos/v/g1/5564835
+http://g1.globo.com/videos/v/g1/5564797
+http://g1.globo.com/videos/v/g1/5564810
+http://g1.globo.com/videos/v/g1/5564784
+http://g1.globo.com/videos/v/g1/5564725
+/sp/sao-paulo/musica/show/paralamas-do-sucesso-12-01-2017-sesc-pompeia-comedoria-paralamas-do-sucesso.html
+http://g1.globo.com/economia/seu-dinheiro/noticia/taxa-de-juros-do-cartao-de-credito-cai-e-a-do-cheque-especial-sobe-aponta-anefac.ghtml
+http://g1.globo.com/sao-paulo/noticia/video-mostra-pastor-ferido-em-palco-de-igreja-apos-levar-facada.ghtml
+http://g1.globo.com/pop-arte/noticia/policia-prende-grupo-suspeito-de-assaltar-kim-kardashian-em-paris.ghtml
+http://g1.globo.com/distrito-federal/noticia/justica-autoriza-ex-senador-luiz-estevao-a-fazer-curso-de-ingles-para-reduzir-pena.ghtml
+http://g1.globo.com/rio-de-janeiro/noticia/crivella-nomeia-mulher-para-obra-social-do-rio.ghtml
+http://g1.globo.com/pr/parana/noticia/2017/01/apos-melhora-rafael-greca-deve-deixar-hospital-nesta-segunda-feira.html
+http://g1.globo.com/mundo/noticia/russia-esta-cansada-do-amadorismo-de-acusacoes-dos-eua.ghtml
+http://g1.globo.com/videos/v/g1-em-1-minuto-apos-mortes-20-detentos-sao-transferidos-de-cadeia-em-manaus/5564685/
+http://globoplay.globo.com/v/5565103/
+http://g1.globo.com/globo-news/jornal-globo-news/videos/v/novo-prefeito-destroi-ciclovia-construida-por-gestao-anterior-em-goianesia-go/5564607/
+http://g1.globo.com/musica/noticia/u2-anuncia-turne-comemorativa-de-30-anos-do-lendario-album-the-joshua-tree.ghtml
+http://g1.globo.com/sp/sao-carlos-regiao/noticia/2017/01/casal-de-cachorros-ganha-festa-de-casamento-em-sao-carlos-sp.html
+http://g1.globo.com/goias/noticia/2017/01/estudante-faz-festa-de-15-anos-com-dinheiro-da-venda-de-balas-especial.html
+http://g1.globo.com/musica/noticia/marcelo-yuka-lanca-disco-para-dar-conforto-apos-idas-e-vindas-do-hospital.ghtml
+http://g1.globo.com/tecnologia/ces/2017/noticia/ces-veja-15-produtos-que-brilharam-na-maior-feira-de-eletronicos-do-mundo.ghtml
+http://g1.globo.com/planeta-bizarro/noticia/gata-e-resgatada-apos-ficar-presa-em-porta-de-garagem-nos-eua.ghtml
+http://g1.globo.com/mundo/noticia/o-jardim-japones-que-convida-visitantes-a-conversarem-ao-telefone-com-parentes-mortos.ghtml
+http://g1.globo.com/rio-de-janeiro/carnaval/2017/noticia/vila-isabel-quer-promover-uma-nova-kizomba-no-carnaval-do-rio.ghtml
+http://g1.globo.com/mundo/noticia/ingressos-gratuitos-para-discurso-de-despedida-de-obama-sao-vendidos-a-us-5-mil.ghtml
+http://g1.globo.com/bemestar/noticia/por-que-voce-deveria-lavar-as-toalhas-de-banho-com-mais-frequencia-do-que-imagina.ghtml
+http://g1.globo.com/politica/noticia/am-supera-pe-e-lidera-ranking-de-superlotacao-em-presidios-brasil-tem-270-mil-presos-acima-da-capacidade.ghtml
+http://especiais.g1.globo.com/economia/2017/calculadora-ipva-e-iptu/
+http://especiais.g1.globo.com/politica/2015/as-promessas-dos-politicos/
+http://g1.globo.com/planeta-bizarro/noticia/batman-e-flagrado-pedalando-batbicicleta-na-cidade-do-mexico.ghtml
+http://g1.globo.com/planeta-bizarro/noticia/apesar-do-frio-nova-iorquinos-viajam-de-metro-sem-calcas.ghtml
+http://g1.globo.com/blogs-e-colunas/
+http://g1.globo.com/economia/blog/samy-dana/post/samy-dana-responde-manter-imoveis-alugados-ou-vende-los-e-aplicar-o-valor.html
+http://g1.globo.com/natureza/blog/nova-etica-social/post/barbarie-cometida-por-quem-o-sistema-poe-margem.html
+http://g1.globo.com/mundo/blog/helio-gurovitz/post/o-valor-de-desplugar-atencao.html
+http://g1.globo.com/bemestar/blog/doutora-ana-responde/post/medicina-sem-pressa-somos-mesmo-pacientes.html
+http://g1.globo.com/pop-arte/blog/maquina-de-escrever/post/ricardo-piglia-libertou-literatura-argentina-de-borges-e-cortazar.html
+http://g1.globo.com/bemestar/blog/longevidade-modo-de-usar/post/o-detetive-que-enfrenta-sua-propria-decadencia.html
+http://g1.globo.com/musica/blog/antonio-carlos-miguel/post/musica-natural-de-lili.html
+http://g1.globo.com/musica/blog/mauro-ferreira/post/silva-lanca-single-com-remix-assinado-por-produtor-musical-ligado-ao-funk.html
+http://g1.globo.com/pop-arte/blog/yvonne-maggie/post/sonho-real.html
+http://g1.globo.com/tecnologia/blog/seguranca-digital/post/por-que-web-esta-migrando-para-o-https-g1-explica.html
+http://epoca.globo.com/politica/noticia/2017/01/temer-estuda-alivio-para-concessionarias-afetadas-por-crise-e-lava-jato.html
+http://blogs.oglobo.globo.com/panorama-esportivo/post/chapecoense-denuncia-advogados-oportunistas-que-agem-em-nome-do-clube-junto-aos-familiares-das-vitimas.html
+http://cbn.globoradio.globo.com/editorias/economia/2017/01/06/ALEXANDRE-KALIL-PERMITE-QUE-CARROS-DE-LUXO-DA-PREFEITURA-DE-BH-SEJAM-USADOS-EM-CARATER-PA.htm
+http://extra.globo.com/emprego/servidor-publico/estado-do-rio-erra-servidores-da-saude-do-proderj-nao-recebem-parcela-do-salario-20737275.html
+/ultimas-noticias.html
+//g1.globo.com/
+//globoesporte.globo.com/
+//gshow.globo.com/
+//famosos.globo.com/
+//globotv.globo.com/
+//www.globo.com/todos-os-sites.html
+//www.globo.com/privacidade.html
+//meuperfil.globo.com
+//assine.globo.com/
+//anuncie.globo.com/
 >>> 
